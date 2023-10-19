@@ -8,10 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @Data
 @AllArgsConstructor
@@ -43,9 +42,7 @@ public class Empleado {
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Rol.class, cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Rol> roles = new HashSet<>();
+    private Set<Rol> roles ;
 
-    public void setCifrarContrasena(String contrasena) {
-        this.contrasena = new BCryptPasswordEncoder().encode(contrasena);
-    }
+    
 }

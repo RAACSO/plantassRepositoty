@@ -37,7 +37,7 @@
   <!--fin navar-->
   <h1>Formulario de Creación de Empleado</h1>
 
-    <form action="/crearEmpleado" method="post" th:object="${empleado}">
+    <form th:action="@{/createEmpleado}" method="post" th:object="${empleado}">
         <label>Usuario:</label>
         <input type="text" th:field="*{usuario}" />
 
@@ -50,11 +50,11 @@
         <label>Telefon:</label>
         <input type="text" th:field="*{telefono}" />
         
-        <select >
-            <option th:each="role : ${roles}" th:value="${role}" th:text="${role.name}"></option>
+        <select name="roles" >
+            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
         </select>
         
-        <button type="submit">Crear Empleado</button>
+        <input type="submit" value="Crear Cliente" class="btn btn-primary">
     </form>
   
   <footer class="footer bg-dark text-white text-center mt ">

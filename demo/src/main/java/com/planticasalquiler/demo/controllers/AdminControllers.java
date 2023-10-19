@@ -1,18 +1,26 @@
 package com.planticasalquiler.demo.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import com.planticasalquiler.demo.models.Empleado;
 import com.planticasalquiler.demo.models.Rol;
 import com.planticasalquiler.demo.repositories.EmpleadoRepository;
 import com.planticasalquiler.demo.repositories.RolRepository;
+
+import jakarta.validation.Valid;
+
+
 
 @Controller
 public class AdminControllers {
@@ -23,6 +31,8 @@ public class AdminControllers {
     @Autowired
     private RolRepository rolRepository;
 
+    // @Autowired
+    // private BCryptPasswordEncoder bCryptPasswordEncoder;
     @GetMapping("/empleadosRegistrados")
     public String empleadosRegistrados(Model model) {
         List<Empleado> empleados = empleadoRepository.finByEmpleados(0);
@@ -38,13 +48,42 @@ public class AdminControllers {
         return "formularioEmpleado";
     }
 
-   
+    //  @RequestMapping(value = "/createEmpleado",method = RequestMethod.POST)
+    // public String guardar(@Valid Empleado empleado,BindingResult result, Model model, SessionStatus status){
+    //     if (result.hasErrors()) {
+    //         model.addAttribute("titulo","Formulario del Cliente");
+    //         return "createEmpleado";
+    //     }
+    //     // Encripta la contraseña utilizando BCrypt
+    // BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    // String contraseñaEncriptada = bCryptPasswordEncoder.encode(empleado.getContrasena());
+    // empleado.setContrasena(contraseñaEncriptada);
+        
+    
+    //     empleadoRepository.save(empleado);
+    //     status.setComplete();
+    //     return "redirect:empleadosRegistrados";
+    // }
 
-    @PostMapping("/crearEmpleado")
-    public String crearEmpleado(@ModelAttribute("empleado") Empleado empleado, Model model) {
-        // Cifrar la contraseña antes de guardarla en la base de datos
-        empleado.setCifrarContrasena(empleado.getContrasena());
-        empleadoRepository.save(empleado);
-        return "redirect:/listaEmpleado";
+    @RequestMapping(value = "/createEmpleado", method = RequestMethod.POST)
+public String guardar(@Valid Empleado empleado, BindingResult result, Model model, SessionStatus status) {
+    if (result.hasErrors()) {
+        model.addAttribute("titulo", "Formulario del Cliente");
+        return "createEmpleado";
     }
+
+    // Encripta la contraseña utilizando BCrypt
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    String contraseñaEncriptada = bCryptPasswordEncoder.encode(empleado.getContrasena());
+    empleado.setContrasena(contraseñaEncriptada);
+
+    // Aquí puedes asignar los roles al empleado si lo deseas
+    Set<Rol> roles = empleado.getRoles();
+    // Procede a guardar el empleado
+    empleadoRepository.save(empleado);
+    status.setComplete();
+    return "redirect:empleadosRegistrados";
+}
+
+
 }
