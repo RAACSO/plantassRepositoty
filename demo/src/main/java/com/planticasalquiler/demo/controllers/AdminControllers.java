@@ -13,8 +13,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
+import com.planticasalquiler.demo.models.Cliente;
 import com.planticasalquiler.demo.models.Empleado;
 import com.planticasalquiler.demo.models.Rol;
+import com.planticasalquiler.demo.repositories.ClienteRepository;
 import com.planticasalquiler.demo.repositories.EmpleadoRepository;
 import com.planticasalquiler.demo.repositories.RolRepository;
 
@@ -25,6 +27,8 @@ import jakarta.validation.Valid;
 @Controller
 public class AdminControllers {
 
+    @Autowired
+    private ClienteRepository clienteRepository;
     @Autowired
     private EmpleadoRepository empleadoRepository;
 
@@ -48,23 +52,6 @@ public class AdminControllers {
         return "formularioEmpleado";
     }
 
-    //  @RequestMapping(value = "/createEmpleado",method = RequestMethod.POST)
-    // public String guardar(@Valid Empleado empleado,BindingResult result, Model model, SessionStatus status){
-    //     if (result.hasErrors()) {
-    //         model.addAttribute("titulo","Formulario del Cliente");
-    //         return "createEmpleado";
-    //     }
-    //     // Encripta la contraseña utilizando BCrypt
-    // BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    // String contraseñaEncriptada = bCryptPasswordEncoder.encode(empleado.getContrasena());
-    // empleado.setContrasena(contraseñaEncriptada);
-        
-    
-    //     empleadoRepository.save(empleado);
-    //     status.setComplete();
-    //     return "redirect:empleadosRegistrados";
-    // }
-
     @RequestMapping(value = "/createEmpleado", method = RequestMethod.POST)
 public String guardar(@Valid Empleado empleado, BindingResult result, Model model, SessionStatus status) {
     if (result.hasErrors()) {
@@ -86,4 +73,30 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
 }
 
 
+@GetMapping("/clientesRegistrados")
+    public String clientesRegistrados(Model model) {
+        List<Cliente> clientes = clienteRepository.finByClientes(0);
+        model.addAttribute("clientes", clientes);
+        
+        return "listaClientes";
+    }
+
+    @GetMapping("/nuevoCliente")
+    public String mostrarFormularioCliente(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "formularioCliente";
+    }
+
+    @RequestMapping(value = "/createCliente", method = RequestMethod.POST)
+public String guardarCliente(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
+    if (result.hasErrors()) {
+        model.addAttribute("titulo", "Formulario del Cliente");
+        return "createCliente";
+    }
+
+    // Procede a guardar el empleado
+    clienteRepository.save(cliente);
+    status.setComplete();
+    return "redirect:clientesRegistrados";
+}
 }
