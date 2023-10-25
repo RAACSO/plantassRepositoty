@@ -33,9 +33,7 @@ public class SecurityConfig {
                 .formLogin().loginPage("/login").defaultSuccessUrl("/index",true).permitAll()
                 .and().logout()
                 .logoutUrl("/logout") // Ruta de cierre de sesión
-                .logoutSuccessUrl("/login?logout") // Página a la que redirigir después del cierre de sesión
-                .invalidateHttpSession(true) // Invalida la sesión HTTP
-                .deleteCookies("JSESSIONID") // Elimina las cookies de sesión
+                .logoutSuccessUrl("/login?logout") // Página a la que redirigir después del cierre de sesión/ Elimina las cookies de sesión
                 .permitAll()
                 .and()
                 .httpBasic()

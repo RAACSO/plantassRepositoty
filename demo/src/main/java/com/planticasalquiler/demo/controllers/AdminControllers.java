@@ -16,9 +16,11 @@ import org.springframework.validation.BindingResult;
 
 import com.planticasalquiler.demo.models.Cliente;
 import com.planticasalquiler.demo.models.Empleado;
+import com.planticasalquiler.demo.models.Producto;
 import com.planticasalquiler.demo.models.Rol;
 import com.planticasalquiler.demo.repositories.ClienteRepository;
 import com.planticasalquiler.demo.repositories.EmpleadoRepository;
+import com.planticasalquiler.demo.repositories.ProductoRepository;
 import com.planticasalquiler.demo.repositories.RolRepository;
 
 import jakarta.validation.Valid;
@@ -30,14 +32,17 @@ public class AdminControllers {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
     @Autowired
     private EmpleadoRepository empleadoRepository;
 
     @Autowired
     private RolRepository rolRepository;
 
-    // @Autowired
-    // private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    //controllers empleado 
     @GetMapping("/empleadosRegistrados")
     public String empleadosRegistrados(Model model) {
         List<Empleado> empleados = empleadoRepository.finByEmpleados(0);
@@ -72,9 +77,10 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
     status.setComplete();
     return "redirect:empleadosRegistrados";
 }
+//fin controllers empleado
 
-
-@GetMapping("/clientesRegistrados")
+//controllers clientes
+    @GetMapping("/clientesRegistrados")
     public String clientesRegistrados(Model model) {
         List<Cliente> clientes = clienteRepository.finByClientes(0);
         model.addAttribute("clientes", clientes);
@@ -98,15 +104,11 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
         // Procede a guardar el empleado
         clienteRepository.save(cliente);
         status.setComplete();
-        return "redirect:clientesRegistrados";
+        return "redirect:nuevaFactura";
     }
+    //fin controllers clientes
 
-    // @GetMapping("/nuevaFactura")
-    // public String formularioFactura() {
-        
-    //     return "formularioFactura";
-    // }
-
+    // controlles factura
     @RequestMapping("/nuevaFactura")
     public String filtro (Model model,@Param("dniFilter")String dniFilter){
         List<Cliente> clientes = clienteRepository.finByFilter(dniFilter);
@@ -114,5 +116,23 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
         model.addAttribute("dniFilter", dniFilter);
         
         return "formularioFactura";
+    }
+    // fin controllers factura
+
+    // controllers productos
+    @GetMapping("/productosRegistrados")
+    public String productosRegistrados(Model model) {
+        List<Producto> productos = productoRepository.finByProductos(0);
+        model.addAttribute("productos", productos);
+        return "listaProductos";
+    }
+
+    
+    //fin controllers productos
+
+    @GetMapping("/inventario")
+    public String inventariu() {
+        
+        return "listaInventario";
     }
 }

@@ -12,7 +12,6 @@
   <title>Planticas</title>
   <link rel="icon" href="img/icono.png">
   <script src="script.js"></script>
-  
 </head>
 
 <body>
@@ -29,30 +28,14 @@
             <a class="item-lista-dinamica"  th:href="@{/inventario}" data-text="&nbsp;Inventario">&nbsp;Inventario&nbsp;</a>
         </li>
         <li class="lista-2-dinamica" style="--clr:#b006a7;">
-            <a class="item-lista-dinamica"   th:href="@{/nuevaFactura}" data-text="&nbsp;Facturar">&nbsp;Facturar&nbsp;</a>
+            <a class="item-lista-dinamica"  th:href="@{/nuevaFactura}" data-text="&nbsp;Facturar">&nbsp;Facturar&nbsp;</a>
         </li>
         <p><a th:href="@{/logout}" class="btn btn-danger btn-xs m-2">salir</a></p>
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Creación de Cliente</h1>
-
-    <form th:action="@{/createCliente}" method="post" th:object="${cliente}">
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" />
-      <br>
-        <label>Direccioin:</label>
-        <input type="text" th:field="*{direccion}" />
-<br>
-        <label>DNI:</label>
-        <input type="text" th:field="*{dni}" />
-    <br>    
-        <label>Telefono:</label>
-        <input type="text" th:field="*{telefono}" />
-        
-        <input type="submit" value="Crear Cliente" class="btn btn-primary">
-    </form>
-  
+  <h1>inventario</h1>
+  <a class="item-lista-dinamica" th:href="@{/productosRegistrados}" data-text="&nbsp;Productos">&nbsp;Productos&nbsp;</a>
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">
       <div class="row pt-2">

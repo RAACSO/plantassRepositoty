@@ -12,7 +12,6 @@
   <title>Planticas</title>
   <link rel="icon" href="img/icono.png">
   <script src="script.js"></script>
-  
 </head>
 
 <body>
@@ -35,24 +34,21 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Creación de Cliente</h1>
-
-    <form th:action="@{/createCliente}" method="post" th:object="${cliente}">
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" />
-      <br>
-        <label>Direccioin:</label>
-        <input type="text" th:field="*{direccion}" />
-<br>
-        <label>DNI:</label>
-        <input type="text" th:field="*{dni}" />
-    <br>    
-        <label>Telefono:</label>
-        <input type="text" th:field="*{telefono}" />
-        
-        <input type="submit" value="Crear Cliente" class="btn btn-primary">
-    </form>
   
+  <h1>Lista de Productos</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio Dia</th>
+        </tr>
+        <tr th:each="producto : ${productos}">
+            <td th:text="${producto.id}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.precioDia}"></td>     
+        </tr>
+    </table>
+    <a class="item-lista-dinamica" th:href="@{/nuevoProducto}" data-text="&nbsp;Agregar">&nbsp;Agregar&nbsp;</a>
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">
       <div class="row pt-2">
