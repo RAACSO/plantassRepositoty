@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <title>Planticas</title>
-  <link rel="icon" href="img/icono.png">
+  <link rel="icon" th:href="@{img/logo.png}">
   <script src="script.js"></script>
   
 </head>
@@ -40,16 +40,16 @@
 
     <form th:action="@{/createEmpleado}" method="post" th:object="${empleado}">
         <label>Usuario:</label>
-        <input type="text" th:field="*{usuario}" />
+        <input type="text" th:field="*{usuario}" required/>
 <br>
         <label>Contraseña:</label>
-        <input type="password" th:field="*{contrasena}" />
+        <input type="password" th:field="*{contrasena}" required/>
 <br>
         <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" />
+        <input type="text" th:field="*{nombre}" required/>
 <br>
         <label>Telefon:</label>
-        <input type="text" th:field="*{telefono}" />
+        <input type="text" th:field="*{telefono}" required/>
    <br>     
         <select name="roles" >
             <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>

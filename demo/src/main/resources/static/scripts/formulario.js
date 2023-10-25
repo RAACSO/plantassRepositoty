@@ -1,14 +1,14 @@
 let currentStep = 1;
 
 function updateProgress() {
-    const totalSteps = 4; // Cambia esto al número total de pasos
+    const totalSteps = 3; // Cambia esto al número total de pasos
     const progress = (currentStep - 1) / (totalSteps - 1) * 100;
     document.getElementById('progress').style.width = progress + '%';
 }
 
 function nextStep(step) {
     currentStep += step;
-    if (currentStep > 4) currentStep = 4; // Cambia esto al número total de pasos
+    if (currentStep > 3) currentStep = 3; // Cambia esto al número total de pasos
     showStep(currentStep);
     updateProgress();
 }

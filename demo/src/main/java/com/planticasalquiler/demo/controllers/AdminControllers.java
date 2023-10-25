@@ -16,10 +16,12 @@ import org.springframework.validation.BindingResult;
 
 import com.planticasalquiler.demo.models.Cliente;
 import com.planticasalquiler.demo.models.Empleado;
+import com.planticasalquiler.demo.models.Inventario;
 import com.planticasalquiler.demo.models.Producto;
 import com.planticasalquiler.demo.models.Rol;
 import com.planticasalquiler.demo.repositories.ClienteRepository;
 import com.planticasalquiler.demo.repositories.EmpleadoRepository;
+import com.planticasalquiler.demo.repositories.InventarioRepository;
 import com.planticasalquiler.demo.repositories.ProductoRepository;
 import com.planticasalquiler.demo.repositories.RolRepository;
 
@@ -42,6 +44,9 @@ public class AdminControllers {
     @Autowired
     private ProductoRepository productoRepository;
 
+    @Autowired
+    private InventarioRepository inventarioRepository;
+
     //controllers empleado 
     @GetMapping("/empleadosRegistrados")
     public String empleadosRegistrados(Model model) {
@@ -61,7 +66,7 @@ public class AdminControllers {
     @RequestMapping(value = "/createEmpleado", method = RequestMethod.POST)
 public String guardar(@Valid Empleado empleado, BindingResult result, Model model, SessionStatus status) {
     if (result.hasErrors()) {
-        model.addAttribute("titulo", "Formulario del Cliente");
+        model.addAttribute("titulo", "Formulario del Empleado");
         return "createEmpleado";
     }
 
@@ -112,6 +117,8 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
     @RequestMapping("/nuevaFactura")
     public String filtro (Model model,@Param("dniFilter")String dniFilter){
         List<Cliente> clientes = clienteRepository.finByFilter(dniFilter);
+        List<Producto> productos = productoRepository.finByProductos(0);
+        model.addAttribute("productos", productos);
         model.addAttribute("clientes", clientes);
         model.addAttribute("dniFilter", dniFilter);
         
@@ -127,12 +134,54 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
         return "listaProductos";
     }
 
+    @GetMapping("/nuevoProducto")
+    public String mostrarFormularioProducto(Model model) {
+        model.addAttribute("producto", new Producto());
+        return "formularioProducto";
+    }
+
+    @RequestMapping(value = "/createProducto", method = RequestMethod.POST)
+    public String guardarProducto(@Valid Producto producto, BindingResult result, Model model, SessionStatus status) {
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Formulario del Cliente");
+            return "createProducto";
+        }
+
+        productoRepository.save(producto);
+        status.setComplete();
+        return "redirect:productosRegistrados";
+    }
     
     //fin controllers productos
 
+
+    // controllers inventario
     @GetMapping("/inventario")
-    public String inventariu() {
-        
+    public String inventariu(Model model) {
+        List<Inventario> inventarios = inventarioRepository.finByInventario(0);
+        model.addAttribute("inventarios", inventarios);
         return "listaInventario";
     }
+
+    @GetMapping("/nuevoInventario")
+    public String mostrarFormularioInventario(Model model) {
+        List<Producto> productos = productoRepository.finByProductos(0);
+        model.addAttribute("inventario", new Inventario());
+        model.addAttribute("productos", productos);
+        return "formularioInventario";
+    }
+
+    @RequestMapping(value = "/createInventario", method = RequestMethod.POST)
+    public String guardarInventario(@Valid Inventario inventario, BindingResult result, Model model, SessionStatus status) {
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Formulario del Cliente");
+            return "createProducto";
+        }
+
+        inventarioRepository.save(inventario);
+        status.setComplete();
+        return "redirect:productosRegistrados";
+    }
+
+    // fin controllers inventario
 }

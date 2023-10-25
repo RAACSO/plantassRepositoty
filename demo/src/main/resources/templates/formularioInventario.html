@@ -35,22 +35,21 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Creación de Cliente</h1>
+  <h1>Formulario de Creación de Prodcto</h1>
 
-    <form th:action="@{/createCliente}" method="post" th:object="${cliente}">
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}"  required />
-      <br>
-        <label>Direccioin:</label>
-        <input type="text" th:field="*{direccion}" required />
-<br>
-        <label>DNI:</label>
-        <input type="text" th:field="*{dni}"  required/>
-    <br>    
-        <label>Telefono:</label>
-        <input type="text" th:field="*{telefono}"  required/>
+    <form th:action="@{/createInventario}" method="post" th:object="${inventario}">
+        <select name="estado" >
+            <option>DISPONIBLE</option>
+            <option>ALQUILADO</option>
+            <option>REPARACION</option>
+            <option>INACTIVO</option>
+        </select>
+
+        <select name="producto" >
+            <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}"></option>
+        </select>
         
-        <input type="submit" value="Crear Cliente" class="btn btn-primary">
+        <input type="submit" value="Crear producto" class="btn btn-primary">
     </form>
   
   <footer class="footer bg-dark text-white text-center mt ">

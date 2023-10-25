@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <title>Planticas</title>
-  <link rel="icon" href="img/icono.png">
+  <link rel="icon" th:href="@{img/logo.png}">
   <script th:src="@{/scripts/formulario.js}"></script>
 </head>
 
@@ -45,7 +45,6 @@
         <form th:action="@{/nuevaFactura}">
           <input type="text" placeholder="DNI"  name="dniFilter"  id="dniFilter" th:value="${dniFilter}">
           <input type="submit" value="Buscar" >
-        </form>
 
         <table>
           <tr>
@@ -66,28 +65,33 @@
       <select name="clientes" >
         <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.id}"></option>
     </select>
+    <br>
         <button type="button" onclick="nextStep(1)">Siguiente</button>
-        <li class="lista-2-dinamica" style="--clr:#b006a7;">
-        <a class="item-lista-dinamica" th:href="@{/nuevoCliente}" data-text="&nbsp;Agregar">&nbsp;Agregar &nbsp;</a>
-        </li>
-        <li class="lista-2-dinamica" style="--clr:#b006a7;">
-          <a class="item-lista-dinamica" th:href="@{/clientesRegistrados}" data-text="&nbsp;Clientes">&nbsp;Clientes &nbsp;</a>
-          </li>
+        <p><a th:href="@{/nuevoCliente}" class="btn btn-primary btn-xs m-2">Agregar Cliente</a></p>
+        <p><a th:href="@{/clientesRegistrados}" class="btn btn-primary btn-xs m-2">Lista Clientes</a></p>
+        
     </div>
     <div class="step" id="step2">
         <h2>Paso 2</h2>
-        <input type="email" placeholder="Correo electrónico" required>
+        <input type="number" placeholder="Cantidad" >
+        <br>
+        <label for="">Tipo</label>
+        <select name="producto" >
+          <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}"></option>
+      </select>
+      <br>
+      <br>
+        <input type="text" placeholder="Fecha inicio AAAA-MM-DD" >
+        <input type="text" placeholder="Fecha Fin AAAA-MM-DD" >
+        
+          <input type="submit" value="Buscar" >
+        </form>
+        <br>
         <button type="button" onclick="prevStep(1)">Anterior</button>
         <button type="button" onclick="nextStep(1)">Siguiente</button>
     </div>
     <div class="step" id="step3">
         <h2>Paso 3</h2>
-        <input type="number" placeholder="Edad" required>
-        <button type="button" onclick="prevStep(1)">Anterior</button>
-        <button type="button" onclick="nextStep(1)">Siguiente</button>
-    </div>
-    <div class="step" id="step4">
-        <h2>Paso 4</h2>
         <input type="number" placeholder="Edad" required>
         <button type="button" onclick="prevStep(1)">Anterior</button>
         <button type="submit">Guardar</button>
