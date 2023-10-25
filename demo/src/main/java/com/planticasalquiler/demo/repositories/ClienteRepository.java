@@ -13,4 +13,7 @@ import com.planticasalquiler.demo.models.Cliente;
 public interface ClienteRepository  extends CrudRepository<Cliente, Long>{
     @Query("SELECT c FROM Cliente c WHERE c.id > :id")
     List<Cliente> finByClientes(@Param("id") int id);
+
+    @Query("SELECT c FROM Cliente c WHERE c.dni = :dniFilter")
+     List<Cliente> finByFilter(String dniFilter);
 }

@@ -160,3 +160,58 @@ body {
       margin-right: 0;
     }
   }
+
+  /* -------- */
+
+  
+
+
+.progress-container {
+    width: 99%;
+    background-color: #f3f3f3;
+    margin: 5px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 30px;
+    background-color: #4CAF50;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.step {
+    display: none;
+}
+
+#step1{
+    display: block;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+input {
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button[type="submit"] {
+    background-color: #008CBA;
+}
+

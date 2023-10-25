@@ -29,7 +29,7 @@
             <a class="item-lista-dinamica"  th:href="@{/clientesRegistrados}" data-text="&nbsp;Inventario">&nbsp;Inventario&nbsp;</a>
         </li>
         <li class="lista-2-dinamica" style="--clr:#b006a7;">
-            <a class="item-lista-dinamica"  href="#" data-text="&nbsp;Listar">&nbsp;Listar&nbsp;</a>
+            <a class="item-lista-dinamica"   th:href="@{/nuevaFactura}" data-text="&nbsp;Facturar">&nbsp;Facturar&nbsp;</a>
         </li>
         <p><a th:href="@{/logout}" class="btn btn-danger btn-xs m-2">salir</a></p>
     </ul>
@@ -40,20 +40,20 @@
     <form th:action="@{/createEmpleado}" method="post" th:object="${empleado}">
         <label>Usuario:</label>
         <input type="text" th:field="*{usuario}" />
-
+<br>
         <label>Contraseña:</label>
         <input type="password" th:field="*{contrasena}" />
-
+<br>
         <label>Nombre:</label>
         <input type="text" th:field="*{nombre}" />
-
+<br>
         <label>Telefon:</label>
         <input type="text" th:field="*{telefono}" />
-        
+   <br>     
         <select name="roles" >
             <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
         </select>
-        
+        <br>
         <input type="submit" value="Crear Cliente" class="btn btn-primary">
     </form>
   

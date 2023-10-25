@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -88,15 +89,30 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
     }
 
     @RequestMapping(value = "/createCliente", method = RequestMethod.POST)
-public String guardarCliente(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
-    if (result.hasErrors()) {
-        model.addAttribute("titulo", "Formulario del Cliente");
-        return "createCliente";
+    public String guardarCliente(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Formulario del Cliente");
+            return "createCliente";
+        }
+
+        // Procede a guardar el empleado
+        clienteRepository.save(cliente);
+        status.setComplete();
+        return "redirect:clientesRegistrados";
     }
 
-    // Procede a guardar el empleado
-    clienteRepository.save(cliente);
-    status.setComplete();
-    return "redirect:clientesRegistrados";
-}
+    // @GetMapping("/nuevaFactura")
+    // public String formularioFactura() {
+        
+    //     return "formularioFactura";
+    // }
+
+    @RequestMapping("/nuevaFactura")
+    public String filtro (Model model,@Param("dniFilter")String dniFilter){
+        List<Cliente> clientes = clienteRepository.finByFilter(dniFilter);
+        model.addAttribute("clientes", clientes);
+        model.addAttribute("dniFilter", dniFilter);
+        
+        return "formularioFactura";
+    }
 }
