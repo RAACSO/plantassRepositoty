@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -110,6 +112,12 @@ public String guardar(@Valid Empleado empleado, BindingResult result, Model mode
         clienteRepository.save(cliente);
         status.setComplete();
         return "redirect:nuevaFactura";
+    }
+
+    @RequestMapping(value = "/eliminar/{id}")
+    public String eliminarCliente(@PathVariable Long id) {
+        clienteRepository.deleteById(id); // Elimina el cliente por su ID
+        return "redirect:/clientesRegistrados"; // Redirige a la página de lista de clientes o a donde desees
     }
     //fin controllers clientes
 
