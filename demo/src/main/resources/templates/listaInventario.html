@@ -40,11 +40,13 @@
           <th>ID</th>
           <th>Tipo</th>
           <th>Estado</th>
+          <th>Editar</th>
       </tr>
       <tr th:each="inventario : ${inventarios}">
           <td th:text="${inventario.id}"></td>
           <td th:text="${inventario.producto.nombre}"></td>
-          <td th:text="${inventario.estado}"></td>     
+          <td th:text="${inventario.estado}"></td>    
+          <td><a th:href="@{/editarInventario/}+ ${inventario.id}">Editar Inventario</a></td> 
       </tr>
   </table>
   <p><a th:href="@{/productosRegistrados}" class="btn btn-primary btn-xs m-2">Lista Productos</a></p>

@@ -41,11 +41,15 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Precio Dia</th>
+            <!-- <th>Eliminar</th> -->
+            <th>Editar</th>
         </tr>
         <tr th:each="producto : ${productos}">
             <td th:text="${producto.id}"></td>
             <td th:text="${producto.nombre}"></td>
-            <td th:text="${producto.precioDia}"></td>     
+            <td th:text="${producto.precioDia}"></td>   
+            <!-- <td><a th:href="@{/eliminarProducto/}+ ${producto.id}" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar Producto</a></td>  -->
+            <td><a th:href="@{/editarProducto/}+ ${producto.id}">Editar Producto</a></td>  
         </tr>
     </table>
     <p><a th:href="@{/nuevoProducto}" class="btn btn-primary btn-xs m-2">Agregar Producto</a></p>

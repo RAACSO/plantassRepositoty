@@ -12,6 +12,7 @@
   <title>Planticas</title>
   <link rel="icon" th:href="@{img/logo.png}">
   <script src="script.js"></script>
+  
 </head>
 
 <body>
@@ -34,33 +35,17 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Lista de Empleados</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Usuario</th>
-            <th>Contraseña</th>
-            <th>Telefono</th>
-            <th>Rol</th>
-            <th>Eliminar</th>
-            <th>Editar</th>
-        </tr>
-        <tr th:each="empleado : ${empleados}">
-            <td th:text="${empleado.id}"></td>
-            <td th:text="${empleado.nombre}"></td>
-            <td th:text="${empleado.usuario}"></td>
-            <td th:text="${empleado.contrasena}"></td>
-            <td th:text="${empleado.telefono}"></td>
-            <td th:each="roles : ${empleado.roles}" th:text="${roles.name}">           
-            </td>
-            <td><a th:href="@{/eliminarEmpleado/}+ ${empleado.id}" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')">Eliminar Empleado</a></td> 
-            <td><a th:href="@{/editarEmpleado/}+ ${empleado.id}">Editar Empleado</a></td>
+  <h1>Formulario de Creación de Prodcto</h1>
 
-        </tr>
-    </table>
-    <p><a th:href="@{/nuevoEmpleado}" class="btn btn-primary btn-xs m-2">Agregar Empleado</a></p>
-
+    <form th:action="@{/editarProducto/}+${producto.id}" method="post" th:object="${producto}">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required/>
+      <br>
+        <label>Precio Dia:</label>
+        <input type="number" th:field="*{precioDia}" required />
+        
+        <input type="submit" value="Crear producto" class="btn btn-primary">
+    </form>
   
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">
