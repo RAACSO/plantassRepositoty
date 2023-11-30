@@ -1,0 +1,248 @@
+inicio menú
+#cuerpo-menu-dinamico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #252839;
+}
+
+    #lista-1-dinamica{
+    margin-top: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    }
+
+    .lista-2-dinamica{
+    position: relative;
+    list-style: none;
+    }
+
+    .item-lista-dinamica{
+    position: relative;
+    font-size: 23px;
+    text-decoration: none;
+    line-height: 200%;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+    }
+
+    .item-lista-dinamica::before{
+    content: attr(data-text);
+    position:absolute;
+    color: var(--clr);
+    width: 0;
+    overflow: hidden;
+    transition: 1s;
+    border-right: 2px solid var(--clr);
+    -webkit-text-stroke: 1px var(--clr);
+    }
+
+    .item-lista-dinamica:hover::before{
+        width: 100%;
+        filter: drop-shadow(0 0 25px var(--clr));
+    }
+
+    
+/*fin menu*/
+    #logotipo{
+        margin: 0%;
+        margin-left: 4%;
+        width: 50px;
+    height: 100%;
+    }
+    .imgcarrusel{
+        
+        width: 65%;
+        height: 500px;
+        margin-left: 18%;
+    }
+    
+    .c{
+        background-color: rgb(158, 212, 181);
+    }
+    .ml{
+        margin-left: 30px;
+    }
+    .mr{
+        margin-right: 30px;
+    }
+    .carusel{
+        width: 200px;
+    }
+    .carousel-control-prev{
+        margin-left: 50px;
+    }
+    i{
+       
+        font-size:36px ;
+    }
+
+    
+    
+    #span{
+        margin-left: 210px;
+    }
+
+    #label{
+        margin-left: 200px;
+        
+    }
+
+    #vueltos{
+        height: 50px;
+    }
+
+
+    .btn{
+        border: none;
+    }
+    .table{
+        margin-top: 40px;
+        /* border: 2px solid black; */
+        background-color:rgba(158, 212, 181, 0.836)
+    }
+    .cont-tabla{
+        margin-top: 10px;
+        padding: 7px;
+        background-color: rgba(158, 212, 181, 0.568);
+        padding-top: 0.2px;
+    }
+    td {
+    border:3px solid rgb(158, 212, 181) ;
+    }
+    th {
+    border:3px solid rgb(158, 212, 181) ;
+    font-size: 30px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+body {
+    background-color: #A7C4E5;
+    
+}
+.form-control{
+    margin-left: 550px;
+    float:right ;
+    margin-top: 20px;
+}
+.search{
+    margin-top: 20px;
+}
+.input-group{
+    margin-left: 900px;
+}
+#canc {
+    margin-left:50px;
+    border-radius: 10px;
+    margin-right: 5px;
+
+}
+#add{
+    border-radius: 10px;
+}
+.footer{
+    height: 200px;
+}
+.mt{
+    margin-top: 220px;
+}
+
+.cascading-center {
+    margin-right: -50px;
+  }
+
+  @media (max-width: 1000px) {
+    .cascading-center {
+      margin-right: 0;
+    }
+  }
+
+  /* -------- */
+
+  
+
+
+.progress-container {
+    width: 99%;
+    background-color: #f3f3f3;
+    margin: 5px;
+}
+
+.progress-bar {
+    width: 0;
+    height: 30px;
+    background-color: #8b4caf;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.step {
+    display: none;
+}
+
+#step1{
+    display: block;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+input {
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button[type="submit"] {
+    background-color: #008CBA;
+}
+
+#containerImgInicio{
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center
+}
+
+#imgInicio{
+    margin-top: 30px;
+    width: 95%;
+    height: 600PX;
+    
+}
+
+.titulos{
+    text-align: center;
+}
+
+.tablas{
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center
+}
+
+table, th, td {
+    border: 3px solid rgb(0, 123, 255); 
+}
+input{
+    border-radius: 15px;
+    border-color: transparent;
+    width: 500px;
+}
