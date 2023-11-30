@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <title>Planticas</title>
+  <link rel="icon" th:href="@{img/logo.png}">
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <img id="logotipo" th:src="@{img/logo.png}" alt="logotipo">
+        <li class="lista-2-dinamica" style="--clr:#00ade1;">
+            <a class="item-lista-dinamica" th:href="@{/index}" data-text="&nbsp;Inicio">&nbsp;Inicio&nbsp;</a>
+        </li>
+        <li  class="lista-2-dinamica" style="--clr:#ff6493;">
+            <a class="item-lista-dinamica"  th:href="@{/empleadosRegistrados}" data-text="&nbsp;Empleados">&nbsp;Empleados&nbsp;</a>
+        </li>
+        <li class="lista-2-dinamica" style="--clr:#ffdd1c;">
+            <a class="item-lista-dinamica"  th:href="@{/inventario}" data-text="&nbsp;Inventario">&nbsp;Inventario&nbsp;</a>
+        </li>
+        <li class="lista-2-dinamica" style="--clr:#b006a7;">
+            <a class="item-lista-dinamica"  th:href="@{/nuevaFactura}" data-text="&nbsp;Facturar">&nbsp;Facturar&nbsp;</a>
+        </li>
+        <p><a th:href="@{/logout}" class="btn btn-danger btn-xs m-2">salir</a></p>
+    </ul>
+  </nav>
+  <!--fin navar-->
+  <h1 class="titulos">Lista de Productos</h1>
+  <div class="tablas">
+    <table>
+      <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Editar</th>
+      </tr>
+      <tr th:each="inventario : ${inventarios}">
+          <td th:text="${inventario.id}"></td>
+          <td th:text="${inventario.producto.nombre}"></td>
+          <td th:text="${inventario.estado}"></td>    
+          <td><a th:href="@{/editarInventario/}+ ${inventario.id}">Editar Inventario</a></td> 
+      </tr>
+  </table>  
+  </div>
+  <div class="tablas">
+    <p><a th:href="@{/productosRegistrados}" class="btn btn-primary btn-xs m-2">Lista Productos</a></p>
+  <p><a th:href="@{/nuevoInventario}" class="btn btn-primary btn-xs m-2">Agregar Item a Inventario</a></p>
+  </div>
+  <footer class="footer bg-dark text-white text-center mt ">
+    <div class="container">
+      <div class="row pt-2">
+        <div class="col">
+          <h3>CONTACTO</h3>
+          <button type="button" class="btn btn-outline-primary"> <i class="bi bi-facebook"></i></button>
+          <button type="button" class="btn btn-outline-success"><i class="bi bi-whatsapp"></i></button>
+          <button type="button" class="btn btn-outline-warning"><i class="bi bi-instagram"></i></button>
+        </div>
+        <div class="col">
+          <h3>CORREO</h3>
+          <p>planticas@gmail.com</p>
+          <p>Tel: 6505555</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>
