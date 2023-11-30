@@ -36,27 +36,29 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Creación de Empleado</h1>
-
-    <form th:action="@{/createEmpleado}" method="post" th:object="${empleado}">
-        <label>Usuario:</label>
-        <input type="text" th:field="*{usuario}" required/>
+  <h1 class="titulos">Formulario de Creación de Empleado</h1>
+<div class="tablas">
+  <form th:action="@{/createEmpleado}" method="post" th:object="${empleado}">
+    
+    <input type="text" th:field="*{usuario}" required placeholder="Usuario"/>
 <br>
-        <label>Contraseña:</label>
-        <input type="password" th:field="*{contrasena}" required/>
+    
+    <input type="password" th:field="*{contrasena}" required placeholder="Contraseña"/>
 <br>
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" required/>
+    
+    <input type="text" th:field="*{nombre}" required placeholder="Nombre"/>
 <br>
-        <label>Telefon:</label>
-        <input type="text" th:field="*{telefono}" required/>
-   <br>     
-        <select name="roles" >
-            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
-        </select>
-        <br>
-        <input type="submit" value="Crear Empleado" class="btn btn-primary">
-    </form>
+    
+    <input type="text" th:field="*{telefono}" required placeholder="Telefono"/>
+<br>     
+    <select name="roles" class="form-select form-select-lg ">
+        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+    </select>
+    <br>
+    <input type="submit" value="Crear Empleado" class="btn btn-primary">
+</form>
+</div>
+    
   
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">

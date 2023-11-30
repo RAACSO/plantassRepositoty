@@ -35,17 +35,17 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Creación de Prodcto</h1>
-
+  <h1 class="titulos">Formulario de Creación de Prodcto</h1>
+  <div class="tablas">
     <form th:action="@{/editarProducto/}+${producto.id}" method="post" th:object="${producto}">
-        <label>Nombre:</label>
-        <input type="text" th:field="*{nombre}" required/>
+      <input type="text" th:field="*{nombre}" required placeholder="Nombre"/>
+    <br>
+      <input type="number" th:field="*{precioDia}" required placeholder="Precio Dia" />
       <br>
-        <label>Precio Dia:</label>
-        <input type="number" th:field="*{precioDia}" required />
-        
-        <input type="submit" value="Crear producto" class="btn btn-primary">
-    </form>
+      <input type="submit" value="Crear producto" class="btn btn-primary">
+  </form>
+  </div>
+    
   
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">

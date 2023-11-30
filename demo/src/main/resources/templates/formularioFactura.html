@@ -38,66 +38,87 @@
   <div class="progress-container">
     <div class="progress-bar" id="progress"></div>
 </div>
-<form id="multipasos-form">
+<div class="tablas">
+  <form id="multipasos-form">
     <div class="step" id="step1">
-        <h2 class="pasos">Paso 1</h2>
-        <h3>Datos del cliente</h3>
+        <h2 class="titulos">Paso 1</h2>
+        <h3 class="titulos">Datos del cliente</h3>
         <form th:action="@{/nuevaFactura}">
-          <input type="text" placeholder="DNI"  name="dniFilter"  id="dniFilter" th:value="${dniFilter}">
-          <input type="submit" value="Buscar" >
 
-        <table>
-          <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Direccion</th>
-              <th>DNI</th>
-              <th>Telefono</th>
-          </tr>
-          <tr th:each="cliente : ${clientes}">
-              <td th:text="${cliente.id}"></td>
-              <td th:text="${cliente.nombre}"></td>
-              <td th:text="${cliente.direccion}"></td>
-              <td th:text="${cliente.dni}"></td>
-              <td th:text="${cliente.telefono}"></td>        
-          </tr>
-      </table>
-      <select name="clientes" >
+            <div class="tablas">
+              <div class="col-5">
+                <input class="form-control"type="text" placeholder="DNI"  name="dniFilter"  id="dniFilter" th:value="${dniFilter}">
+              </div>
+            </div>
+
+            <div class="tablas">
+ 
+                <input class="btn btn-success"  type="submit" value="Buscar" >
+             
+            </div>
+            
+          
+          
+          
+            <div class="tablas">
+              <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>DNI</th>
+                    <th>Telefono</th>
+                </tr>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.id}"></td>
+                    <td th:text="${cliente.nombre}"></td>
+                    <td th:text="${cliente.direccion}"></td>
+                    <td th:text="${cliente.dni}"></td>
+                    <td th:text="${cliente.telefono}"></td>        
+                </tr>
+            </table>
+            </div>
+        
+      <!-- <select name="clientes" >
         <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.id}"></option>
-    </select>
+    </select> -->
     <br>
-        <button type="button" onclick="nextStep(1)">Siguiente</button>
-        <p><a th:href="@{/nuevoCliente}" class="btn btn-primary btn-xs m-2">Agregar Cliente</a></p>
-        <p><a th:href="@{/clientesRegistrados}" class="btn btn-primary btn-xs m-2">Lista Clientes</a></p>
+    <div class="tablas">
+      <button class="btn btn-success btn-xs " type="button" onclick="nextStep(1)">Siguiente</button>
+      <p><a th:href="@{/nuevoCliente}" class="btn btn-primary btn-xs m-2 mt-4">Agregar Cliente</a></p>
+      <p><a th:href="@{/clientesRegistrados}" class="btn btn-primary btn-xs m-2 mt-4">Lista Clientes</a></p>
+    </div>
+        
         
     </div>
     <div class="step" id="step2">
-        <h2>Paso 2</h2>
+        <h2 class="titulos">Paso 2</h2>
         <input type="number" placeholder="Cantidad" >
         <br>
-        <label for="">Tipo</label>
-        <select name="producto" >
+        <select name="producto"  class="form-select form-select-lg ">
           <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}"></option>
       </select>
       <br>
-      <br>
         <input type="text" placeholder="Fecha inicio AAAA-MM-DD" >
+        <br>
         <input type="text" placeholder="Fecha Fin AAAA-MM-DD" >
-        
-          <input type="submit" value="Buscar" >
+        <br>
+          <input class="btn btn-primary"  type="submit" value="Buscar" >
         </form>
         <br>
-        <button type="button" onclick="prevStep(1)">Anterior</button>
-        <button type="button" onclick="nextStep(1)">Siguiente</button>
+        <button class="btn btn-success btn-xs m-2" type="button" onclick="prevStep(1)">Anterior</button>
+        <button class="btn btn-success btn-xs m-2" type="button" onclick="nextStep(1)">Siguiente</button>
     </div>
     <div class="step" id="step3">
         <h2>Paso 3</h2>
         <input type="number" placeholder="Edad" required>
-        <button type="button" onclick="prevStep(1)">Anterior</button>
-        <button type="submit">Guardar</button>
+        <button class="btn btn-success btn-xs m-2" type="button" onclick="prevStep(1)">Anterior</button>
+        <button class="btn btn-success btn-xs m-2" type="submit">Guardar</button>
     </div>
     <script th:src="@{/scripts/formulario.js}"></script>
 </form>
+</div>
+
 <!-- inicio footer -->
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">

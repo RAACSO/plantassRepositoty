@@ -35,28 +35,34 @@
   </nav>
   <!--fin navar-->
   
-  <h1>Lista de Personas</h1>
+  <h1 class="titulos">Lista de Personas</h1>
+  <div class="tablas">
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Direccion</th>
-            <th>DNI</th>
-            <th>Telefono</th>
-            <th>Eliminar</th>
-            <th>Editar</th>
-        </tr>
-        <tr th:each="cliente : ${clientes}">
-            <td th:text="${cliente.id}"></td>
-            <td th:text="${cliente.nombre}"></td>
-            <td th:text="${cliente.direccion}"></td>
-            <td th:text="${cliente.dni}"></td>
-            <td th:text="${cliente.telefono}"></td>
-            <td><a th:href="@{/eliminarCliente/}+ ${cliente.id}" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">Eliminar Cliente</a></td> 
-            <td><a th:href="@{/editarCliente/}+ ${cliente.id}">Editar Cliente</a></td>               
-        </tr>
-    </table>
+      <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th>DNI</th>
+          <th>Telefono</th>
+          <th>Eliminar</th>
+          <th>Editar</th>
+      </tr>
+      <tr th:each="cliente : ${clientes}">
+          <td th:text="${cliente.id}"></td>
+          <td th:text="${cliente.nombre}"></td>
+          <td th:text="${cliente.direccion}"></td>
+          <td th:text="${cliente.dni}"></td>
+          <td th:text="${cliente.telefono}"></td>
+          <td><a th:href="@{/eliminarCliente/}+ ${cliente.id}" onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">Eliminar Cliente</a></td> 
+          <td><a th:href="@{/editarCliente/}+ ${cliente.id}">Editar Cliente</a></td>               
+      </tr>
+  </table>
+  </div>
+  <div class="tablas">
     <p><a th:href="@{/nuevoCliente}" class="btn btn-primary btn-xs m-2">Agregar Cliente</a></p>
+  </div>
+    
+   
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">
       <div class="row pt-2">

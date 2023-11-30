@@ -35,22 +35,25 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Creación de Prodcto</h1>
+  <h1 class="titulos">Formulario de Creación de Producto</h1>
 
-    <form th:action="@{/createInventario}" method="post" th:object="${inventario}">
-        <select name="estado" >
-            <option>DISPONIBLE</option>
-            <option>ALQUILADO</option>
-            <option>REPARACION</option>
-            <option>INACTIVO</option>
-        </select>
-
-        <select name="producto" >
-            <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}"></option>
-        </select>
-        
-        <input type="submit" value="Crear Item" class="btn btn-primary">
-    </form>
+  <div class="tablas">
+    <form th:action="@{/createInventario}" method="post" th:object="${inventario}" >
+      <select name="estado" class="form-select form-select-lg ">
+          <option>DISPONIBLE</option>
+          <option>ALQUILADO</option>
+          <option>REPARACION</option>
+          <option>INACTIVO</option>
+      </select>
+<br>
+      <select name="producto" class="form-select form-select-lg ">
+          <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}"></option>
+      </select>
+      <br>
+      <input type="submit" value="Crear Item" class="btn btn-primary">
+  </form>
+  </div>
+    
   
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">

@@ -35,22 +35,24 @@
     </ul>
   </nav>
   <!--fin navar-->
-  <h1>Formulario de Editar de Item Inventario</h1>
-
-    <form th:action="@{/editarInventario/}+${inventario.id}" method="post" th:object="${inventario}">
-        <select name="estado" >
-            <option>DISPONIBLE</option>
-            <option>ALQUILADO</option>
-            <option>REPARACION</option>
-            <option>INACTIVO</option>
-        </select>
-
-        <select name="producto" >
-            <option th:value="${inventario.id}" th:text="${inventario.producto.nombre}"></option>
-        </select>
-        
-        <input type="submit" value="Editar item" class="btn btn-primary">
-    </form>
+  <h1 class="titulos">Formulario de Editar de Item Inventario</h1>
+<div class="tablas">
+  <form th:action="@{/editarInventario/}+${inventario.id}" method="post" th:object="${inventario}">
+    <select name="estado" class="form-select form-select-lg ">
+        <option>DISPONIBLE</option>
+        <option>ALQUILADO</option>
+        <option>REPARACION</option>
+        <option>INACTIVO</option>
+    </select>
+<br>
+    <select name="producto" class="form-select form-select-lg ">
+        <option th:value="${inventario.id}" th:text="${inventario.producto.nombre}"></option>
+    </select>
+    <br>
+    <input type="submit" value="Editar item" class="btn btn-primary">
+</form>
+</div>
+    
   
   <footer class="footer bg-dark text-white text-center mt ">
     <div class="container">
